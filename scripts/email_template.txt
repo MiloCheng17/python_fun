@@ -1,0 +1,8 @@
+Hi All,
+
+[name] ([group]) will be presenting [date] at [time] in [room]. The title is [title].
+
+All are encouraged to attend.
+
+Best,
+Daniel

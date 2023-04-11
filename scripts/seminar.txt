@@ -1,0 +1,6 @@
+[name = 'Daniel O\'Malley']
+[group = 'Simone/Emmert Groups']
+[date = 'today'] 
+[time = '2:30 pm']
+[room = 'SM102']
+[title = '\"Development of an Instrument for the Automated Monitoring of Trihalomethanes in Drinking Water\"']
