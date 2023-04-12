@@ -28,9 +28,13 @@ df2 = pd.read_csv(sys.argv[2],header=0,index_col=0)
 #print(delta_df)                
 
 delta = df1.to_numpy() - df2.to_numpy()
+names = []
+for name in df1.columns:
+    names.append(name.split('-')[0][5:])
+#print(names)
 
 fig, ax = plt.subplots()
-im, cbar = heatmap(delta, df1.index, df1.columns, ax=ax, cmap ='Blues',cbarlabel='RMSD')
+im, cbar = heatmap(delta, df1.index, names, ax=ax, cmap ='RdBu',vmin=-1.0,vmax=1.0,cbarlabel='RMSD')
 #im, cbar = heatmap(hbond, res_unique, res_unique, ax=ax, cmap ='Spectral',cbarlabel='distance')
 #texts = annotate_heatmap(im, valfmt="{x:.2f}")
 

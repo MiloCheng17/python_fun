@@ -26,7 +26,7 @@ def heatmap(data,row_labels,col_labels,ax=None,cbar_kw={},cbarlabel="",**kwargs)
     #cbar.set_clim(-0.5,1)
 
     # Show all ticks and label them with the respective list entries.
-    ax.set_xticks(np.arange(data.shape[1])-0.5)
+    ax.set_xticks(np.arange(data.shape[1]))
     ax.set_xticklabels(labels=col_labels)
     ax.set_yticks(np.arange(data.shape[0]))
     ax.set_yticklabels(labels=row_labels)
@@ -35,14 +35,12 @@ def heatmap(data,row_labels,col_labels,ax=None,cbar_kw={},cbarlabel="",**kwargs)
     ax.tick_params(top=True, bottom=False,labeltop=True, labelbottom=False)
 
     # Rotate the tick labels and set their alignment.
-    plt.setp(ax.get_xticklabels(), rotation=-90, ha="right",rotation_mode="anchor")
+    plt.setp(ax.get_xticklabels(), rotation=-45, ha="right",rotation_mode="anchor")
 
     # Turn spines off and create white grid.
-    #ax.spines[:].set_visible(False)
+    ax.spines[:].set_visible(False)
 
     ax.set_xticks(np.arange(data.shape[1]+1)-.5, minor=True)
-    #ax.set_xticks(np.arange(data.shape[1]+1)-.5, minor=True)
-    #ax.set_yticks(np.arange(data.shape[0]+1)-.5, minor=True)
     ax.set_yticks(np.arange(data.shape[0]+1)-.5, minor=True)
     ax.grid(which="minor", color="w", linestyle='-', linewidth=3)
     ax.tick_params(which="minor", bottom=False, left=False)
@@ -84,9 +82,12 @@ def annotate_heatmap(im, data=None, valfmt="{x:.2f}", textcolors=("black", "whit
 if __name__ == '__main__':
 
     df = pd.read_csv(sys.argv[1],index_col=0)
+    names = []
+    for name in df.columns:
+        names.append(name.split('-')[0][5:])
 
     fig, ax = plt.subplots()
-    im, cbar = heatmap(df, df.index, df.columns, ax=ax, cmap ='Blues',cbarlabel='RMSD')
+    im, cbar = heatmap(df, df.index, names, ax=ax, cmap ='Blues',cbarlabel='RMSD',vmax=1)
     #im, cbar = heatmap(hbond, res_unique, res_unique, ax=ax, cmap ='Spectral',cbarlabel='distance')
     #texts = annotate_heatmap(im, valfmt="{x:.2f}")
 
